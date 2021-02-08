@@ -36,6 +36,16 @@ axios.post = async (url: string, payload: Post) => {
   }
 };
 
+// @ts-ignore
+axios.put = async (url: string, payload: Post) => {
+  if (url === '/posts') {
+    await delay(500);
+    return Promise.resolve({
+      data: payload,
+    });
+  }
+};
+
 import App from './App.vue';
 console.log(App);
 

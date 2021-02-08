@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="navbar-end">
       <div class="buttons" v-if="auth">
-        <router-link class="button" to="/posts/new">New Posts</router-link>
+        <router-link class="button" to="/posts/new">New Post</router-link>
         <button class="button" @click="signout">Signout</button>
       </div>
 

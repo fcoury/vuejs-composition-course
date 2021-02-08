@@ -44,7 +44,7 @@ export default defineComponent({
         length({ min: 5, max: 10 }),
       ]);
     });
-    const password = ref('');
+    const password = ref('password123');
     const passwordStatus = computed<Status>(() => {
       return validate(password.value, [
         required(),

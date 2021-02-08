@@ -16,7 +16,7 @@ interface AuthorState {
   currentUserId?: string;
 }
 
-interface State {
+export interface State {
   authors: AuthorState;
   posts: PostState;
 }
@@ -34,7 +34,7 @@ const initialAuthorsState = (): AuthorState => ({
   currentUserId: undefined,
 });
 
-const initialState = (): State => ({
+export const initialState = (): State => ({
   authors: initialAuthorsState(),
   posts: initialPostsState(),
 });
@@ -63,6 +63,12 @@ class Store {
     this.state.posts.ids.push(response.data.id.toString());
   }
 
+  async updatePost(post: Post) {
+    const response = await axios.put<Post>('/posts', post);
+    console.log('response.data', response.data);
+    this.state.posts.all[response.data.id] = response.data;
+  }
+
   async fetchPosts() {
     const response = await axios.get<Post[]>('/posts');
 
@@ -84,8 +90,8 @@ export const provideStore = () => {
   provide('store', store);
 };
 
-export const createStore = () => {
-  return new Store(initialState());
+export const createStore = (init: State = initialState()) => {
+  return new Store(init);
 };
 
 export const useStore = (): Store => {
