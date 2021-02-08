@@ -12,6 +12,8 @@ import { defineComponent } from 'vue';
 import { Post } from './types';
 
 export default defineComponent({
+  name: 'TimelinePost',
+
   props: {
     post: {
       type: Object as () => Post,
